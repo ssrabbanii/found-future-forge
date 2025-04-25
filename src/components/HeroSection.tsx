@@ -1,8 +1,11 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
+import ApplicationForm from './ApplicationForm';
 
 const HeroSection = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 bg-ef-background">
       <div className="absolute inset-0 z-0">
@@ -20,11 +23,20 @@ const HeroSection = () => {
         </p>
         
         <div className="opacity-0 animate-fade-in-delay-3">
-          <Button size="lg" className="bg-ef-primary hover:bg-ef-primary/90 text-white font-medium px-8 py-6 text-lg">
+          <Button 
+            size="lg" 
+            className="bg-ef-primary hover:bg-ef-primary/90 text-white font-medium px-8 py-6 text-lg"
+            onClick={() => setIsFormOpen(true)}
+          >
             Apply Now
           </Button>
         </div>
       </div>
+
+      <ApplicationForm 
+        isOpen={isFormOpen} 
+        onClose={() => setIsFormOpen(false)} 
+      />
     </section>
   );
 };

@@ -1,8 +1,11 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
+import ApplicationForm from './ApplicationForm';
 
 const CTASection = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   return (
     <section className="py-24 px-6 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-ef-secondary to-ef-primary opacity-90 z-0"></div>
@@ -16,11 +19,20 @@ const CTASection = () => {
             Join a community of founders who are shaping the future. We provide the capital, network, and support you need to turn your vision into reality.
           </p>
           
-          <Button size="lg" className="bg-white text-ef-primary hover:bg-white/90 font-medium px-8 py-6 text-lg">
+          <Button 
+            size="lg" 
+            className="bg-white text-ef-primary hover:bg-white/90 font-medium px-8 py-6 text-lg"
+            onClick={() => setIsFormOpen(true)}
+          >
             Apply Now
           </Button>
         </div>
       </div>
+
+      <ApplicationForm 
+        isOpen={isFormOpen} 
+        onClose={() => setIsFormOpen(false)} 
+      />
     </section>
   );
 };
